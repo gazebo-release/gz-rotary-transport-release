@@ -1,0 +1,40 @@
+#!/usr/bin/make -f
+
+ifeq ($(DEB_HOST_ARCH),$(filter $(DEB_HOST_ARCH),amd64 i386))
+  CMAKE_HOST_CFLAGS="True"
+else
+  CMAKE_HOST_CFLAGS="False"
+endif
+
+.PHONY: override_dh_auto_configure \
+        override_dh_install \
+        override_dh_auto_test
+
+%:
+dh $@ --with python3
+
+override_dh_auto_configure:
+dh_auto_configure -- \
+-DUSE_HOST_CFLAGS:BOOL=${CMAKE_HOST_CFLAGS} \
+-DCMAKE_BUILD_TYPE=RelWithDebInfo \
+-DUSE_SYSTEM_PATHS_FOR_PYTHON_INSTALLATION=ON \
+-DUSE_DIST_PACKAGES_FOR_PYTHON=ON \
+-DUSE_SYSTEM_PATHS_FOR_RUBY_INSTALLATION=ON
+
+# Execute doc creation to export at least the doxygen tag file
+override_dh_auto_build:
+dh_auto_build -- doc
+dh_auto_build
+
+override_dh_install:
+install -d debian/tmp/usr/share/gz/gz-transport/
+install ./obj-*/*.tag.xml debian/tmp/usr/share/gz/gz-transport/
+dh_install --
+# need to remove files present in components
+$(RM) debian/libgz-transport*-core-dev/usr/include/gz/transport*/gz/transport/log.hh
+$(RM) debian/libgz-transport*-core-dev/usr/include/gz/transport*/gz/transport/parameters.hh
+dh_missing --list-missing
+
+override_dh_auto_test:
+# Fix tests. They need special configuration for networking
+true

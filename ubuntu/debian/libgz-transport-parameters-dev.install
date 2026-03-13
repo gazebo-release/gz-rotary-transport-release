@@ -1,0 +1,5 @@
+usr/include/*/transport*/*/transport/parameters.hh
+usr/include/*/transport*/*/transport/parameters/*
+usr/lib/*/cmake/*-transport-parameters/*
+usr/lib/*/lib*-transport-parameters.so
+usr/lib/*/pkgconfig/*-transport-parameters.pc
