@@ -61,7 +61,6 @@ Description: Gazebo transport Library - Core Dev files
  .
  The package ships the Gazebo transport core development files
 
-
 Package: libgz-transport
 Architecture: any
 Section: libs
@@ -242,7 +241,7 @@ Description: Gazebo transport Library - Python3 bindings
  .
  The package contains the Python3 bindings.
 
-Package: gz-rotary-transport
+Package: libgz-rotary-transport-dev
 Depends: libgz-transport-dev (= ${binary:Version}), ${misc:Depends}
 Architecture: all
 Priority: optional
@@ -258,7 +257,7 @@ Section: metapackages
 Description: alias package
  Provides a package for Rotary without exposing the version number.
 
-Package: gz-rotary-transport-core
+Package: libgz-rotary-transport-core-dev
 Depends: libgz-transport-core-dev (= ${binary:Version}), ${misc:Depends}
 Architecture: all
 Priority: optional
@@ -266,7 +265,7 @@ Section: metapackages
 Description: alias package
  Provides a package for Rotary without exposing the version number.
 
-Package: gz-rotary-transport-log
+Package: libgz-rotary-transport-log-dev
 Depends: libgz-transport-log-dev (= ${binary:Version}), ${misc:Depends}
 Architecture: all
 Priority: optional
@@ -274,7 +273,7 @@ Section: metapackages
 Description: alias package
  Provides a package for Rotary without exposing the version number.
 
-Package: gz-rotary-transport-parameters
+Package: libgz-rotary-transport-parameters-dev
 Depends: libgz-transport-parameters-dev (= ${binary:Version}), ${misc:Depends}
 Architecture: all
 Priority: optional
@@ -282,7 +281,7 @@ Section: metapackages
 Description: alias package
  Provides a package for Rotary without exposing the version number.
 
-Package: gz-rotary-transport-python
+Package: python3-gz-rotary-transport
 Depends: python3-gz-transport (= ${binary:Version}), ${misc:Depends}
 Architecture: all
 Priority: optional
